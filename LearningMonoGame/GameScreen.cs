@@ -10,11 +10,15 @@ namespace LearningMonoGame
     public class GameScreen
     {
         protected ContentManager content;
+        [XmlIgnore]
         public Type Type;
+
+        public string xmlPath;
 
         public GameScreen()
         {
             Type = this.GetType();
+            xmlPath = "Load/" + Type.ToString().Replace("LearningMonoGame.", "") + ".xml";
         }
 
         public virtual void LoadContent()

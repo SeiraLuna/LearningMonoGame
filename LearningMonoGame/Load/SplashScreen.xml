@@ -1,4 +1,18 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <SplashScreen>
-  <Path>SplashScreen/Image</Path>
+  <Image>
+    <Path>SplashScreen/Image</Path>
+    <Text>Whiteflag Studios</Text>
+
+    <IsActive>true</IsActive>
+
+    <Position>
+      <X>320</X>
+      <Y>240</Y>
+    </Position>
+    <Scale>
+      <X>1.0</X>
+      <Y>1.0</Y>
+    </Scale>
+  </Image>
 </SplashScreen>

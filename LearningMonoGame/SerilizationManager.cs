@@ -13,6 +13,11 @@ namespace LearningMonoGame
     {
         public Type Type;
 
+        public SerilizationManager()
+        {
+            Type = typeof(T);
+        }
+
         public T Load(string path)
         {
             T instance;

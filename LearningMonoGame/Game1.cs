@@ -41,7 +41,8 @@ namespace LearningMonoGame
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
-
+            ScreenManager.Instance.graphicsDevice = GraphicsDevice;
+            ScreenManager.Instance.spriteBatch = spriteBatch;
             ScreenManager.Instance.LoadContent(Content);
         }
 
@@ -75,7 +76,7 @@ namespace LearningMonoGame
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.CornflowerBlue);
+            GraphicsDevice.Clear(Color.Black);
 
             spriteBatch.Begin();
             ScreenManager.Instance.Draw(spriteBatch);
