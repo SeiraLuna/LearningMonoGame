@@ -35,8 +35,11 @@ namespace LearningMonoGame
             base.Update(gameTime);
             Image.Update(gameTime);
 
-            if (Keyboard.GetState().IsKeyDown(Keys.Enter) && !ScreenManager.Instance.IsTransitioning)
+            if (InputManager.Instance.KeyPressed(Keys.Enter, Keys.Z))
                 ScreenManager.Instance.ChangeScreens("SplashScreen");
+
+            //if (Keyboard.GetState().IsKeyDown(Keys.Enter) && !ScreenManager.Instance.IsTransitioning)
+            //    ScreenManager.Instance.ChangeScreens("SplashScreen");
         }
 
         public override void Draw(SpriteBatch spriteBatch)
