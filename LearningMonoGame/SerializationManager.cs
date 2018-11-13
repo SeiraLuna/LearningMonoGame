@@ -9,11 +9,11 @@ using System.Xml.Serialization;
 
 namespace LearningMonoGame
 {
-    public class SerilizationManager<T>
+    public class SerializationManager<T>
     {
         public Type Type;
 
-        public SerilizationManager()
+        public SerializationManager()
         {
             Type = typeof(T);
         }

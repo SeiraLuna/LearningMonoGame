@@ -14,8 +14,9 @@ namespace LearningMonoGame
 
         public FadeEffect()
         {
-            FadeSpeed = 1;
+            FadeSpeed = 1.0f;
             Increase = false;
+            //_isTransitioning = false;
         }
 
         public override void LoadContent(ref Image Image)

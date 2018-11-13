@@ -27,6 +27,19 @@ namespace LearningMonoGame
         public string Effects;
 
         public FadeEffect FadeEffect;
+        public ZoomEffect ZoomEffect;
+        public SpriteSheetEffect SpriteSheetEffect;
+        //[XmlIgnore]
+        //public Dictionary<string, ImageEffect> EffectList
+        //{
+        //    get { return _effectList; }
+        //}
+
+        public Texture2D Texture()
+        {
+            return _texture;
+        }
+
 
         void SetEffect<T>(ref T effect)
         {
@@ -58,6 +71,30 @@ namespace LearningMonoGame
             {
                 _effectList[effect].IsActive = false;
                 _effectList[effect].UnloadContent();
+            }
+        }
+
+        public void StoreEffects()
+        {
+            Effects = String.Empty;
+            foreach(var effect in _effectList)
+            {
+                if (effect.Value.IsActive == true)
+                    Effects += effect.Key + ":";
+            }
+            if (Effects != String.Empty)
+                Effects.Remove(Effects.Length - 1);
+        }
+
+        public void RestroreEffects()
+        {
+            foreach(var effect in _effectList)
+            {
+                DeactivateEffect(effect.Key);
+
+                string[] split = Effects.Split(':');
+                foreach (string s in split)
+                    ActivateEffect(s);
             }
         }
 
@@ -96,7 +133,7 @@ namespace LearningMonoGame
             if (SourceRect == Rectangle.Empty)
                 SourceRect = new Rectangle(0, 0, (int)dimensions.X , (int)dimensions.Y ) ;
 
-            var offset = new Vector2((dimensions.X * Scale.X) / 2, (dimensions.Y * Scale.Y) / 2);
+            //var offset = new Vector2((dimensions.X * Scale.X) / 2, (dimensions.Y * Scale.Y) / 2);
 
             _renderTarget = new RenderTarget2D(ScreenManager.Instance.graphicsDevice, (int)dimensions.X, (int)dimensions.Y);
             ScreenManager.Instance.graphicsDevice.SetRenderTarget(_renderTarget);
@@ -106,7 +143,13 @@ namespace LearningMonoGame
             //new Vector2(_font.MeasureString(Text).X/2 - _texture.Width/2
 
             if (_texture != null)
-                ScreenManager.Instance.spriteBatch.Draw(_texture, new Vector2(dimensions.X/2 - _texture.Width/2,0), Color.White);
+            {
+                if (Text != String.Empty)
+                    ScreenManager.Instance.spriteBatch.Draw(_texture, new Vector2((dimensions.X - _texture.Width) / 2, (dimensions.Y - _texture.Height) / 2), Color.White);
+                else
+                    ScreenManager.Instance.spriteBatch.Draw(_texture, Vector2.Zero, Color.White);
+            }
+
             ScreenManager.Instance.spriteBatch.DrawString(_font, Text, Vector2.Zero, Color.White);
             ScreenManager.Instance.spriteBatch.End();
 
@@ -115,6 +158,8 @@ namespace LearningMonoGame
             ScreenManager.Instance.graphicsDevice.SetRenderTarget(null);
 
             SetEffect<FadeEffect>(ref FadeEffect);
+            SetEffect<ZoomEffect>(ref ZoomEffect);
+            SetEffect<SpriteSheetEffect>(ref SpriteSheetEffect);
 
             if(Effects != String.Empty)
             {
@@ -143,9 +188,9 @@ namespace LearningMonoGame
         }
 
         public void Draw(SpriteBatch spriteBatch)
-        {
+        {            
             _origin = new Vector2(SourceRect.Width / 2, SourceRect.Height / 2);
-            spriteBatch.Draw(_texture, Position , SourceRect, Color.White * Alpha, 0.0f, _origin, Scale, SpriteEffects.None, 0.0f);
+            spriteBatch.Draw(_texture, Position + _origin, SourceRect, Color.White * Alpha, 0.0f, _origin, Scale, SpriteEffects.None, 0.0f);
         }
 
         public void Draw(SpriteBatch spriteBatch, float xPos, float yPos)
@@ -153,7 +198,7 @@ namespace LearningMonoGame
             Position.X = xPos;
             Position.Y = yPos;
             _origin = new Vector2(SourceRect.Width / 2, SourceRect.Height / 2);
-            spriteBatch.Draw(_texture, Position, SourceRect, Color.White * Alpha, 0.0f, _origin, Scale, SpriteEffects.None, 0.0f);
+            spriteBatch.Draw(_texture, Position +_origin, SourceRect, Color.White * Alpha, 0.0f, _origin, Scale, SpriteEffects.None, 0.0f);
         }
     }
 }

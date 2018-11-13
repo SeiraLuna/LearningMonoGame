@@ -2,14 +2,9 @@
 <SplashScreen>
   <Image>
     <Path>SplashScreen/Image</Path>
-    <Text>Whiteflag Studios</Text>
-
+    <Text>Wightflag Studios</Text>
+    <Effects>FadeEffect</Effects>
     <IsActive>true</IsActive>
-
-    <Position>
-      <X>320</X>
-      <Y>240</Y>
-    </Position>
     <Scale>
       <X>1.0</X>
       <Y>1.0</Y>

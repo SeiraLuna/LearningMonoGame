@@ -21,6 +21,8 @@ namespace LearningMonoGame
         {
             base.LoadContent();
             Image.LoadContent();
+            Image.Position = new Vector2((ScreenManager.Instance.Dimensions.X - Image.SourceRect.Width)/2,
+                (ScreenManager.Instance.Dimensions.Y - Image.SourceRect.Height)/2);
             //image = content.Load<Texture2D>(Path);
         }
 
@@ -36,7 +38,7 @@ namespace LearningMonoGame
             Image.Update(gameTime);
 
             if (InputManager.Instance.KeyPressed(Keys.Enter, Keys.Z))
-                ScreenManager.Instance.ChangeScreens("SplashScreen");
+                ScreenManager.Instance.ChangeScreens("TitleScreen");
 
             //if (Keyboard.GetState().IsKeyDown(Keys.Enter) && !ScreenManager.Instance.IsTransitioning)
             //    ScreenManager.Instance.ChangeScreens("SplashScreen");

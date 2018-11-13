@@ -19,7 +19,7 @@ namespace LearningMonoGame
         //{ private set; get; }
         [XmlIgnore]
         public ContentManager Content { private set; get; }
-        SerilizationManager<GameScreen> SerializationGameScreenManager;
+        SerializationManager<GameScreen> SerializationGameScreenManager;
 
         private GameScreen _currentScreen, _newScreen;
         [XmlIgnore]
@@ -37,7 +37,7 @@ namespace LearningMonoGame
             {
                 if (_instance == null)
                 {
-                    var serilizationManager = new SerilizationManager<ScreenManager>();
+                    var serilizationManager = new SerializationManager<ScreenManager>();
                     _instance = serilizationManager.Load("Load/ScreenManager.xml");
                     //_instance = new ScreenManager();
                 }
@@ -80,7 +80,7 @@ namespace LearningMonoGame
         {
             Dimensions = new Vector2(640, 480);            
             _currentScreen = new SplashScreen();
-            SerializationGameScreenManager = new SerilizationManager<GameScreen>();
+            SerializationGameScreenManager = new SerializationManager<GameScreen>();
             SerializationGameScreenManager.Type = _currentScreen.Type;
             _currentScreen = SerializationGameScreenManager.Load("./Load/SplashScreen.xml");
         }
