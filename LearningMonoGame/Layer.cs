@@ -26,12 +26,15 @@ namespace LearningMonoGame
         [XmlElement("TileMap")]
         public TileMap Tiles;
         public Image DrawTile;
+        public string SolidTiles;
         private List<Tile> _tiles;
+        private string _state;
 
         public Layer()
         {
             DrawTile = new Image();
             _tiles = new List<Tile>();
+            SolidTiles = String.Empty;
         }
 
         public void LoadContent(Vector2 tileDimensions)
@@ -50,13 +53,21 @@ namespace LearningMonoGame
                     if (s != String.Empty)
                     {
                         position.X += tileDimensions.X;
-                        _tiles.Add(new Tile());
- 
-                        string str = s.Replace("[", String.Empty);
-                        int value1 = int.Parse(str.Substring(0, str.IndexOf(':')));
-                        int value2 = int.Parse(str.Substring(str.IndexOf(':') + 1));
+                        if (!s.Contains('x'))
+                        {
+                            _state = "Passive";
+                            _tiles.Add(new Tile());
 
-                        _tiles[_tiles.Count - 1].LoadContent(position, new Rectangle(value1*(int)tileDimensions.X, value2 * (int)tileDimensions.Y, (int)tileDimensions.X, (int)tileDimensions.Y));
+                            string str = s.Replace("[", String.Empty);
+                            int value1 = int.Parse(str.Substring(0, str.IndexOf(':')));
+                            int value2 = int.Parse(str.Substring(str.IndexOf(':') + 1));
+
+                            if (SolidTiles.Contains("[" + value1.ToString() + ":" + value2.ToString() + "]"))
+                                _state = "Solid";
+
+                            _tiles[_tiles.Count - 1].LoadContent(position, new Rectangle(value1 * (int)tileDimensions.X, value2 * (int)tileDimensions.Y, (int)tileDimensions.X, (int)tileDimensions.Y), _state);
+                        }
+
                     }
                 }
             }
@@ -67,9 +78,11 @@ namespace LearningMonoGame
             DrawTile.UnloadContent();
         }
 
-        public void Update(GameTime gameTime)
+        public void Update(GameTime gameTime, ref Player player)
         {
-            DrawTile.Update(gameTime);
+            foreach (Tile tile in _tiles)
+                tile.Update(gameTime, ref player);
+
         }
 
         public void Draw(SpriteBatch spriteBatch)

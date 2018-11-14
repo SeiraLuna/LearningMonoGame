@@ -34,10 +34,10 @@ namespace LearningMonoGame
                 l.UnloadContent();
         }
 
-        public void Update(GameTime gameTime)
+        public void Update(GameTime gameTime, ref Player player)
         {
             foreach (Layer l in Layers)
-                l.Update(gameTime);
+                l.Update(gameTime, ref player);
         }
 
         public void Draw(SpriteBatch spriteBatch)

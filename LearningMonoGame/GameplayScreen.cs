@@ -38,7 +38,7 @@ namespace LearningMonoGame
         {
             base.Update(gameTime);
             player.Update(gameTime);
-            _map.Update(gameTime);
+            _map.Update(gameTime, ref player);
         }
 
         public override void Draw(SpriteBatch spriteBatch)
