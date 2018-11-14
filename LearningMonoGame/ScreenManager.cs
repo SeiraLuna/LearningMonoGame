@@ -78,11 +78,17 @@ namespace LearningMonoGame
 
         public ScreenManager()
         {
-            Dimensions = new Vector2(640, 480);            
-            _currentScreen = new SplashScreen();
+            Dimensions = new Vector2(640, 480);
+            _currentScreen = new GameplayScreen();
             SerializationGameScreenManager = new SerializationManager<GameScreen>();
             SerializationGameScreenManager.Type = _currentScreen.Type;
-            _currentScreen = SerializationGameScreenManager.Load("./Load/SplashScreen.xml");
+            //_currentScreen = SerializationGameScreenManager.Load("./Load/SplashScreen.xml");
+
+            //Dimensions = new Vector2(640, 480);            
+            //_currentScreen = new SplashScreen();
+            //SerializationGameScreenManager = new SerializationManager<GameScreen>();
+            //SerializationGameScreenManager.Type = _currentScreen.Type;
+            //_currentScreen = SerializationGameScreenManager.Load("./Load/SplashScreen.xml");
         }
 
         public void LoadContent(ContentManager Content)

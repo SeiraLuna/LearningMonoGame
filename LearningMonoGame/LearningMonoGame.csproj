@@ -68,6 +68,8 @@
     <Compile Include="Image.cs" />
     <Compile Include="ImageEffect.cs" />
     <Compile Include="InputManager.cs" />
+    <Compile Include="Layer.cs" />
+    <Compile Include="Map.cs" />
     <Compile Include="Menu.cs" />
     <Compile Include="MenuItem.cs" />
     <Compile Include="MenuManager.cs" />
@@ -78,6 +80,7 @@
     <Compile Include="SerializationManager.cs" />
     <Compile Include="SplashScreen.cs" />
     <Compile Include="SpriteSheetEffect.cs" />
+    <Compile Include="Tile.cs" />
     <Compile Include="TitleScreen.cs" />
     <Compile Include="ZoomEffect.cs" />
   </ItemGroup>
@@ -93,10 +96,12 @@
     <Content Include="Content\Art\female_02.png" />
     <Content Include="Content\Art\female_03.png" />
     <Content Include="Content\Art\male_01.png" />
+    <Content Include="Content\Art\Tile_Sets\tile_set01.png" />
     <Content Include="Content\Gameplay\Player.png" />
     <Content Include="Content\ScreenManager\FadeImage.png" />
     <Content Include="Content\SplashScreen\Image.png" />
     <Content Include="Icon.ico" />
+    <Content Include="Load\Gameplay\Maps\Map1.xml" />
     <Content Include="Load\Menus\TestMenu.xml" />
     <Content Include="Load\Gameplay\Player.xml" />
     <Content Include="Load\ScreenManager.xml" />
