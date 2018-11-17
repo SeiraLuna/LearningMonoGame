@@ -44,8 +44,9 @@ namespace LearningMonoGame
         public override void Draw(SpriteBatch spriteBatch)
         {
             base.Draw(spriteBatch);
-            _map.Draw(spriteBatch);
+            _map.Draw(spriteBatch, "Underlay");
             player.Draw(spriteBatch);
+            _map.Draw(spriteBatch, "Overlay");
         }
     }
 }

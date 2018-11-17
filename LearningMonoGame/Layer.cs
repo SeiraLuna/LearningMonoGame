@@ -26,15 +26,16 @@ namespace LearningMonoGame
         [XmlElement("TileMap")]
         public TileMap Tiles;
         public Image DrawTile;
-        public string SolidTiles;
-        private List<Tile> _tiles;
+        public string SolidTiles, OverlayTiles;
+        private List<Tile> _underlayTiles, _overlayTiles;
         private string _state;
 
         public Layer()
         {
             DrawTile = new Image();
-            _tiles = new List<Tile>();
-            SolidTiles = String.Empty;
+            _underlayTiles = new List<Tile>();
+            _overlayTiles = new List<Tile>();
+            SolidTiles = OverlayTiles = String.Empty;
         }
 
         public void LoadContent(Vector2 tileDimensions)
@@ -56,7 +57,8 @@ namespace LearningMonoGame
                         if (!s.Contains('x'))
                         {
                             _state = "Passive";
-                            _tiles.Add(new Tile());
+                            var tile = new Tile();
+                            //_udnerlayTiles.Add(new Tile());
 
                             string str = s.Replace("[", String.Empty);
                             int value1 = int.Parse(str.Substring(0, str.IndexOf(':')));
@@ -65,7 +67,14 @@ namespace LearningMonoGame
                             if (SolidTiles.Contains("[" + value1.ToString() + ":" + value2.ToString() + "]"))
                                 _state = "Solid";
 
-                            _tiles[_tiles.Count - 1].LoadContent(position, new Rectangle(value1 * (int)tileDimensions.X, value2 * (int)tileDimensions.Y, (int)tileDimensions.X, (int)tileDimensions.Y), _state);
+                            tile.LoadContent(position, new Rectangle(value1 * (int)tileDimensions.X, value2 * (int)tileDimensions.Y, (int)tileDimensions.X, (int)tileDimensions.Y), _state);
+                            //_udnerlayTiles[_udnerlayTiles.Count - 1].LoadContent(position, new Rectangle(value1 * (int)tileDimensions.X, value2 * (int)tileDimensions.Y, (int)tileDimensions.X, (int)tileDimensions.Y), _state);
+
+                            if (OverlayTiles.Contains("[" + value1.ToString() + ":" + value2.ToString() + "]"))
+                                _overlayTiles.Add(tile);
+                            else
+                                _underlayTiles.Add(tile);
+
                         }
 
                     }
@@ -80,14 +89,26 @@ namespace LearningMonoGame
 
         public void Update(GameTime gameTime, ref Player player)
         {
-            foreach (Tile tile in _tiles)
+            foreach(Tile tile in _underlayTiles)
                 tile.Update(gameTime, ref player);
+            foreach (Tile tile in _overlayTiles)
+                tile.Update(gameTime, ref player);
+
+            //foreach (Tile tile in _udnerlayTiles)
+            //    tile.Update(gameTime, ref player);
 
         }
 
-        public void Draw(SpriteBatch spriteBatch)
+        public void Draw(SpriteBatch spriteBatch, string drawType)
         {
-            foreach(Tile tile in _tiles)
+            List<Tile> tiles;
+            if (drawType == "Underlay")
+                tiles = _underlayTiles;
+            else
+                tiles = _overlayTiles;
+
+
+            foreach(Tile tile in tiles)
             {
                 DrawTile.Position = tile.Position;
                 DrawTile.SourceRect = tile.SourceRect;

@@ -33,12 +33,13 @@
       <Path>Art/Tile_Sets/tile_set01</Path>
     </DrawTile>
     <SolidTiles>[7:3]</SolidTiles>
+    <OverlayTiles>[5:5][7:5]</OverlayTiles>
     <TileMap>
       <Row>[x:x][x:x][x:x][x:x][x:x][x:x][x:x][x:x][x:x][x:x][x:x][x:x][x:x][x:x][x:x][x:x]x:x][x:x][x:x][x:x]</Row>
-      <Row>[x:x][x:x][x:x][x:x][x:x][x:x][x:x][x:x][x:x][x:x][x:x][x:x][x:x][x:x][x:x][x:x]x:x][x:x][x:x][x:x]</Row>
+      <Row>[x:x][x:x][x:x][x:x][x:x][7:5][x:x][x:x][x:x][x:x][x:x][x:x][x:x][x:x][x:x][x:x]x:x][x:x][x:x][x:x]</Row>
       <Row>[x:x][x:x][x:x][x:x][x:x][x:x][x:x][x:x][x:x][x:x][x:x][x:x][x:x][x:x][x:x][x:x]x:x][x:x][x:x][x:x]</Row>
       <Row>[x:x][x:x][x:x][7:3][x:x][x:x][x:x][x:x][x:x][x:x][x:x][x:x][x:x][x:x][x:x][x:x]x:x][x:x][x:x][x:x]</Row>
-      <Row>[x:x][x:x][x:x][x:x][x:x][x:x][x:x][x:x][x:x][x:x][x:x][x:x][x:x][x:x][x:x][x:x]x:x][x:x][x:x][x:x]</Row>
+      <Row>[x:x][x:x][x:x][x:x][5:5][x:x][x:x][x:x][x:x][x:x][x:x][x:x][x:x][x:x][x:x][x:x]x:x][x:x][x:x][x:x]</Row>
       <Row>[x:x][x:x][x:x][x:x][x:x][x:x][x:x][x:x][x:x][x:x][x:x][x:x][x:x][x:x][x:x][x:x]x:x][x:x][x:x][x:x]</Row>
       <Row>[x:x][x:x][x:x][x:x][x:x][x:x][x:x][x:x][x:x][x:x][x:x][x:x][x:x][x:x][x:x][x:x]x:x][x:x][x:x][x:x]</Row>
       <Row>[x:x][x:x][x:x][x:x][x:x][x:x][x:x][x:x][x:x][x:x][x:x][x:x][x:x][x:x][x:x][x:x]x:x][x:x][x:x][x:x]</Row>

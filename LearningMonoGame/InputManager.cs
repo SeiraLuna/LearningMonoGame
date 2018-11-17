@@ -30,6 +30,7 @@ namespace LearningMonoGame
             _currentKeyState = !ScreenManager.Instance.IsTransitioning ? Keyboard.GetState() : _currentKeyState;
            // if (!ScreenManager.Instance.IsTransitioning)
              //   _currentKeyState = Keyboard.GetState();
+                      
         }
 
         public bool KeyPressed(params Keys[] keys)
@@ -42,6 +43,7 @@ namespace LearningMonoGame
             return false;
         }
 
+        
         public bool KeyReleased(params Keys[] keys)
         {
             foreach (Keys k in keys)
